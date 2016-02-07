@@ -1,0 +1,12 @@
+C:\Users\hello\OneDrive\Documents\Visual Studio 2015\Projects\KnowledgeLevelTestingSystem\DbInitializer\bin\Debug\DbInitializer.dll.config
+C:\Users\hello\OneDrive\Documents\Visual Studio 2015\Projects\KnowledgeLevelTestingSystem\DbInitializer\bin\Debug\DbInitializer.dll
+C:\Users\hello\OneDrive\Documents\Visual Studio 2015\Projects\KnowledgeLevelTestingSystem\DbInitializer\bin\Debug\DbInitializer.pdb
+C:\Users\hello\OneDrive\Documents\Visual Studio 2015\Projects\KnowledgeLevelTestingSystem\DbInitializer\bin\Debug\EntityFramework.dll
+C:\Users\hello\OneDrive\Documents\Visual Studio 2015\Projects\KnowledgeLevelTestingSystem\DbInitializer\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\hello\OneDrive\Documents\Visual Studio 2015\Projects\KnowledgeLevelTestingSystem\DbInitializer\bin\Debug\ORM.dll
+C:\Users\hello\OneDrive\Documents\Visual Studio 2015\Projects\KnowledgeLevelTestingSystem\DbInitializer\bin\Debug\ORM.pdb
+C:\Users\hello\OneDrive\Documents\Visual Studio 2015\Projects\KnowledgeLevelTestingSystem\DbInitializer\bin\Debug\EntityFramework.xml
+C:\Users\hello\OneDrive\Documents\Visual Studio 2015\Projects\KnowledgeLevelTestingSystem\DbInitializer\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\hello\OneDrive\Documents\Visual Studio 2015\Projects\KnowledgeLevelTestingSystem\DbInitializer\obj\Debug\DbInitializer.csprojResolveAssemblyReference.cache
+C:\Users\hello\OneDrive\Documents\Visual Studio 2015\Projects\KnowledgeLevelTestingSystem\DbInitializer\obj\Debug\DbInitializer.dll
+C:\Users\hello\OneDrive\Documents\Visual Studio 2015\Projects\KnowledgeLevelTestingSystem\DbInitializer\obj\Debug\DbInitializer.pdb

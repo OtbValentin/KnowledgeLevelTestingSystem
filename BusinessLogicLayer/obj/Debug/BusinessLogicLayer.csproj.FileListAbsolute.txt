@@ -1,0 +1,9 @@
+C:\Users\hello\OneDrive\Documents\Visual Studio 2015\Projects\KnowledgeLevelTestingSystem\BusinessLogicLayer\bin\Debug\BusinessLogicLayer.dll
+C:\Users\hello\OneDrive\Documents\Visual Studio 2015\Projects\KnowledgeLevelTestingSystem\BusinessLogicLayer\bin\Debug\BusinessLogicLayer.pdb
+C:\Users\hello\OneDrive\Documents\Visual Studio 2015\Projects\KnowledgeLevelTestingSystem\BusinessLogicLayer\bin\Debug\BusinessLogicLayer.API.dll
+C:\Users\hello\OneDrive\Documents\Visual Studio 2015\Projects\KnowledgeLevelTestingSystem\BusinessLogicLayer\bin\Debug\DataAccessLayer.API.dll
+C:\Users\hello\OneDrive\Documents\Visual Studio 2015\Projects\KnowledgeLevelTestingSystem\BusinessLogicLayer\bin\Debug\BusinessLogicLayer.API.pdb
+C:\Users\hello\OneDrive\Documents\Visual Studio 2015\Projects\KnowledgeLevelTestingSystem\BusinessLogicLayer\bin\Debug\DataAccessLayer.API.pdb
+C:\Users\hello\OneDrive\Documents\Visual Studio 2015\Projects\KnowledgeLevelTestingSystem\BusinessLogicLayer\obj\Debug\BusinessLogicLayer.csprojResolveAssemblyReference.cache
+C:\Users\hello\OneDrive\Documents\Visual Studio 2015\Projects\KnowledgeLevelTestingSystem\BusinessLogicLayer\obj\Debug\BusinessLogicLayer.dll
+C:\Users\hello\OneDrive\Documents\Visual Studio 2015\Projects\KnowledgeLevelTestingSystem\BusinessLogicLayer\obj\Debug\BusinessLogicLayer.pdb

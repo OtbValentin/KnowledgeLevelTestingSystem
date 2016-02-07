@@ -1,0 +1,30 @@
+﻿@using WebMvcPresentationLayer.Models;
+@model TestViewModel
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+
+<div>
+    @using (Html.BeginForm("Result", "Test", FormMethod.Post))
+    {
+        <p>@Model.Title</p>
+        <ol>
+            @foreach (TestQuestionViewModel question in Model.Questions)
+            {
+                <li>
+                    <p>@question.Text</p>
+                    <ul>
+                        @foreach (string answer in question.AnswerOptions)
+                        {
+                            <li>
+                                @Html.RadioButton(@question.Text, @answer)
+                                <span>@answer</span>
+                            </li>
+                        }
+                    </ul>
+                </li>
+            }
+        </ol>
+    }
+</div>

@@ -1,0 +1,17 @@
+﻿@model IEnumerable<WebMvcPresentationLayer.Models.TestViewModel>
+
+@{
+    ViewBag.Title = "All";
+}
+
+<h2>All</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+
+@foreach (var item in Model)
+{
+    @Html.Partial("Test", item)
+}
+

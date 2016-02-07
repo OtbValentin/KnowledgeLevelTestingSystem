@@ -1,0 +1,16 @@
+C:\Users\hello\OneDrive\Documents\Visual Studio 2015\Projects\KnowledgeLevelTestingSystem\DataAccessLayer\bin\Debug\DataAccessLayer.dll.config
+C:\Users\hello\OneDrive\Documents\Visual Studio 2015\Projects\KnowledgeLevelTestingSystem\DataAccessLayer\bin\Debug\DataAccessLayer.dll
+C:\Users\hello\OneDrive\Documents\Visual Studio 2015\Projects\KnowledgeLevelTestingSystem\DataAccessLayer\bin\Debug\DataAccessLayer.pdb
+C:\Users\hello\OneDrive\Documents\Visual Studio 2015\Projects\KnowledgeLevelTestingSystem\DataAccessLayer\bin\Debug\DataAccessLayer.API.dll
+C:\Users\hello\OneDrive\Documents\Visual Studio 2015\Projects\KnowledgeLevelTestingSystem\DataAccessLayer\bin\Debug\EntityFramework.dll
+C:\Users\hello\OneDrive\Documents\Visual Studio 2015\Projects\KnowledgeLevelTestingSystem\DataAccessLayer\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\hello\OneDrive\Documents\Visual Studio 2015\Projects\KnowledgeLevelTestingSystem\DataAccessLayer\bin\Debug\Ninject.dll
+C:\Users\hello\OneDrive\Documents\Visual Studio 2015\Projects\KnowledgeLevelTestingSystem\DataAccessLayer\bin\Debug\ORM.dll
+C:\Users\hello\OneDrive\Documents\Visual Studio 2015\Projects\KnowledgeLevelTestingSystem\DataAccessLayer\bin\Debug\DataAccessLayer.API.pdb
+C:\Users\hello\OneDrive\Documents\Visual Studio 2015\Projects\KnowledgeLevelTestingSystem\DataAccessLayer\bin\Debug\ORM.pdb
+C:\Users\hello\OneDrive\Documents\Visual Studio 2015\Projects\KnowledgeLevelTestingSystem\DataAccessLayer\bin\Debug\EntityFramework.xml
+C:\Users\hello\OneDrive\Documents\Visual Studio 2015\Projects\KnowledgeLevelTestingSystem\DataAccessLayer\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\hello\OneDrive\Documents\Visual Studio 2015\Projects\KnowledgeLevelTestingSystem\DataAccessLayer\bin\Debug\Ninject.xml
+C:\Users\hello\OneDrive\Documents\Visual Studio 2015\Projects\KnowledgeLevelTestingSystem\DataAccessLayer\obj\Debug\DataAccessLayer.csprojResolveAssemblyReference.cache
+C:\Users\hello\OneDrive\Documents\Visual Studio 2015\Projects\KnowledgeLevelTestingSystem\DataAccessLayer\obj\Debug\DataAccessLayer.dll
+C:\Users\hello\OneDrive\Documents\Visual Studio 2015\Projects\KnowledgeLevelTestingSystem\DataAccessLayer\obj\Debug\DataAccessLayer.pdb

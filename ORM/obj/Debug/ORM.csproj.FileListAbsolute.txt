@@ -1,0 +1,10 @@
+C:\Users\hello\OneDrive\Documents\Visual Studio 2015\Projects\KnowledgeLevelTestingSystem\ORM\bin\Debug\ORM.dll.config
+C:\Users\hello\OneDrive\Documents\Visual Studio 2015\Projects\KnowledgeLevelTestingSystem\ORM\bin\Debug\ORM.dll
+C:\Users\hello\OneDrive\Documents\Visual Studio 2015\Projects\KnowledgeLevelTestingSystem\ORM\bin\Debug\ORM.pdb
+C:\Users\hello\OneDrive\Documents\Visual Studio 2015\Projects\KnowledgeLevelTestingSystem\ORM\bin\Debug\EntityFramework.dll
+C:\Users\hello\OneDrive\Documents\Visual Studio 2015\Projects\KnowledgeLevelTestingSystem\ORM\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\hello\OneDrive\Documents\Visual Studio 2015\Projects\KnowledgeLevelTestingSystem\ORM\bin\Debug\EntityFramework.xml
+C:\Users\hello\OneDrive\Documents\Visual Studio 2015\Projects\KnowledgeLevelTestingSystem\ORM\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\hello\OneDrive\Documents\Visual Studio 2015\Projects\KnowledgeLevelTestingSystem\ORM\obj\Debug\ORM.dll
+C:\Users\hello\OneDrive\Documents\Visual Studio 2015\Projects\KnowledgeLevelTestingSystem\ORM\obj\Debug\ORM.pdb
+C:\Users\hello\OneDrive\Documents\Visual Studio 2015\Projects\KnowledgeLevelTestingSystem\ORM\obj\Debug\ORM.csprojResolveAssemblyReference.cache
