@@ -34,6 +34,13 @@ namespace PresentationLayerWebMvc.Controllers
             return View();
         }
 
+        public ActionResult Logoff()
+        {
+            FormsAuthentication.SignOut();
+
+            return RedirectToAction("Index", "Home");
+        }
+
         [HttpPost]
         public ActionResult Login(LoginViewModel model, string returnUrl)
         {

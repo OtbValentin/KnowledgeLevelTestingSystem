@@ -11,7 +11,7 @@
     int i = 0;
 }
 
-<div class="container">
+<div>
     <div class="row">
         <div class="col-md-10 col-md-offset-1">
             <h3>@Model.Title</h3>
@@ -38,12 +38,14 @@
                         j = 0;
                         i++;
                     }
+                    <li class="list-group-item">
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-10">
+                                <input type="submit" value="Submit" class="btn btn-default" />
+                            </div>
+                        </div>
+                    </li>
                 </ol>
-                <div class="form-group">
-                    <div class="col-md-offset-2 col-md-10">
-                        <input type="submit" value="Submit" class="btn btn-default" />
-                    </div>
-                </div>
             }
         </div>
     </div>
