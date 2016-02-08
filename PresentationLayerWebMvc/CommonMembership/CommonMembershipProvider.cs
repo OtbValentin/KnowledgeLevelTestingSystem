@@ -118,7 +118,7 @@ namespace PresentationLayerWebMvc.CommonMembership
             {
                 User newUser = new User()
                 {
-                    PasswordHash = password,
+                    PasswordHash = Crypto.HashPassword(password),
                     CreationDate = DateTime.Now,
                     Email = username,
                     Roles = new List<Role>() { new Role() { Name = "user" } }

@@ -7,6 +7,7 @@ using BusinessLogicLayer.API.Entities;
 using BusinessLogicLayer.API.Services;
 using DataAccessLayer.API;
 using BusinessLogicLayer.Mappers;
+using DataAccessLayer.API.DTO;
 
 namespace BusinessLogicLayer.Services
 {
@@ -36,6 +37,18 @@ namespace BusinessLogicLayer.Services
             return uow.RoleRepository.GetAll().Select(r => r.ToBllRole());
         }
 
+        public Role GetById(int id)
+        {
+            DalRole dalRole = uow.RoleRepository.GetById(id);
+
+            if (dalRole == null)
+            {
+                return null;
+            }
+
+            return dalRole.ToBllRole();
+        }
+
         public Role GetRoleByName(string name)
         {
             return uow.RoleRepository.GetByName(name).ToBllRole();
@@ -46,6 +59,15 @@ namespace BusinessLogicLayer.Services
             //return uow.RoleRepository.
 
             return new List<Role>();
+        }
+
+        public void Update(Role role)
+        {
+            if (role != null)
+            {
+                uow.RoleRepository.Update(role.ToDalRole());
+                uow.SaveChanges();
+            }
         }
     }
 }

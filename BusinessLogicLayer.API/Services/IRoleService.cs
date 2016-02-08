@@ -14,5 +14,7 @@ namespace BusinessLogicLayer.API.Services
         IEnumerable<Role> GetUserRolesByEmail(string email);
         void Create(Role role);
         void Delete(Role role);
+        void Update(Role role);
+        Role GetById(int id);
     }
 }

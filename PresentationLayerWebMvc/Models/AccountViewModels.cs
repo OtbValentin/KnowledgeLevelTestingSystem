@@ -41,12 +41,4 @@ namespace PresentationLayerWebMvc.Models
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
     }
-
-    public class RoleViewModel
-    {
-        public int Id { get; set; }
-
-        public string Name { get; set; }
-
-    }
 }

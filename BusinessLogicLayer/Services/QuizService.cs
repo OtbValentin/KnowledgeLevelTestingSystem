@@ -8,6 +8,7 @@ using BusinessLogicLayer.API.Services;
 using BusinessLogicLayer.API.Entities;
 using DataAccessLayer.API;
 using BusinessLogicLayer.Mappers;
+using DataAccessLayer.API.DTO;
 
 namespace BusinessLogicLayer.Services
 {
@@ -39,7 +40,14 @@ namespace BusinessLogicLayer.Services
 
         public Quiz GetById(int id)
         {
-            return uow.TestRepository.GetById(id).ToBllTest();
+            DalQuiz quiz = uow.TestRepository.GetById(id);
+
+            if (quiz == null)
+            {
+                return null;
+            }
+
+            return quiz.ToBllTest();
         }
     }
 }
