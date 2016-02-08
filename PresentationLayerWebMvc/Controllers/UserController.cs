@@ -18,7 +18,8 @@ namespace PresentationLayerWebMvc.Controllers
         {
             this.userService = userService;
         }
-        [Authorize(Roles ="admin")]
+
+        //[Authorize(Roles ="admin")]
         public ActionResult Index()
         {
             string delimeter = " ";
@@ -33,6 +34,16 @@ namespace PresentationLayerWebMvc.Controllers
             });
 
             return View(displayUsers);
+        }
+
+        public ActionResult Edit(int id)
+        {
+            return View();
+        }
+
+        public ActionResult Delete(int id)
+        {
+            return View();
         }
     }
 }

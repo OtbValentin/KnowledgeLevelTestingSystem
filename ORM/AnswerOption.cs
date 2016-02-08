@@ -14,7 +14,7 @@ namespace ORM
 
         public int QuestionId { get; set; }
 
-        public virtual TestQuestion Question { get; set; }
+        public virtual QuizQuestion Question { get; set; }
 
         public bool IsCorrect { get; set; }
     }

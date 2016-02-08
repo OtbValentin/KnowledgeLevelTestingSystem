@@ -48,17 +48,17 @@ namespace DependenciesConfig
     {
         public override void Load()
         {
-            Bind<ITestService>().To<TestService>();
+            Bind<IQuizService>().To<QuizService>();
             Bind<IRoleService>().To<RoleService>();
             Bind<IUserService>().To<UserService>();
 
-            Bind<ITestRepository>().To<TestRepository>();
+            Bind<IQuizRepository>().To<QuizRepository>();
             Bind<IUserRepository>().To<UserRepository>();
             Bind<IRoleRepository>().To<RoleRepository>();
 
             Bind<IUnitOfWork>().To<UnitOfWork>().InRequestScope();
 
-            Bind<DbContext>().To<TestingSystemContext>().InRequestScope();
+            Bind<DbContext>().To<QuizFrameworkContext>().InRequestScope();
         }
     }
 }

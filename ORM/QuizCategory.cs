@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace ORM
 {
-    public class TestCategory
+    public class QuizCategory
     {
         public int Id { get; set; }
 
         public string Name { get; set; }
 
-        public virtual ICollection<Test> Tests { get; set; }
+        public virtual ICollection<Quiz> Tests { get; set; }
     }
 }

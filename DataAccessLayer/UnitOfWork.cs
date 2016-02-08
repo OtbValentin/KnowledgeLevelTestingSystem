@@ -14,7 +14,7 @@ namespace DataAccessLayer
         private readonly DbContext context;
         private IRoleRepository roleRepository;
         private IUserRepository userRepository;
-        private ITestRepository testRepository;
+        private IQuizRepository testRepository;
 
         private bool disposed;
 
@@ -34,7 +34,7 @@ namespace DataAccessLayer
             }
         }
 
-        public ITestRepository TestRepository
+        public IQuizRepository TestRepository
         {
             get
             {
@@ -43,7 +43,7 @@ namespace DataAccessLayer
         }
 
         public UnitOfWork(DbContext context, IRoleRepository roleRepository,
-            IUserRepository userRepository, ITestRepository testRepository)
+            IUserRepository userRepository, IQuizRepository testRepository)
         {
             this.context = context;
             this.userRepository = userRepository;

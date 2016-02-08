@@ -12,9 +12,9 @@ namespace BusinessLogicLayer.Mappers
 {
     public static class TestMapper
     {
-        public static Test ToBllTest(this DalTest dalTest)
+        public static Quiz ToBllTest(this DalQuiz dalTest)
         {
-            return new Test()
+            return new Quiz()
             {
                 Id = dalTest.Id,
                 Title = dalTest.Title,
@@ -23,14 +23,14 @@ namespace BusinessLogicLayer.Mappers
             };
         }
 
-        public static TestCategory ToBllTestCategory(this DalTestCategory dalTestCategory)
+        public static QuizCategory ToBllTestCategory(this DalQuizCategory dalTestCategory)
         {
-            return new TestCategory() { Id = dalTestCategory.Id, Name = dalTestCategory.Name };
+            return new QuizCategory() { Id = dalTestCategory.Id, Name = dalTestCategory.Name };
         }
 
-        public static TestQuestion ToBllTestQuestion(this DalTestQuestion dalTestQuestion)
+        public static QuizQuestion ToBllTestQuestion(this DalQuizQuestion dalTestQuestion)
         {
-            return new TestQuestion()
+            return new QuizQuestion()
             {
                 Id = dalTestQuestion.Id,
                 Text = dalTestQuestion.Text,
@@ -39,9 +39,9 @@ namespace BusinessLogicLayer.Mappers
             };
         }
 
-        public static DalTest ToDalTest(this Test test)
+        public static DalQuiz ToDalTest(this Quiz test)
         {
-            return new DalTest()
+            return new DalQuiz()
             {
                 Id = test.Id,
                 Title = test.Title,
@@ -50,14 +50,14 @@ namespace BusinessLogicLayer.Mappers
             };
         }
 
-        public static DalTestCategory ToDalTestCategory(this TestCategory testCategory)
+        public static DalQuizCategory ToDalTestCategory(this QuizCategory testCategory)
         {
-            return new DalTestCategory() { Id = testCategory.Id, Name = testCategory.Name };
+            return new DalQuizCategory() { Id = testCategory.Id, Name = testCategory.Name };
         }
 
-        public static DalTestQuestion ToDalTestQuestion(this TestQuestion testQuestion)
+        public static DalQuizQuestion ToDalTestQuestion(this QuizQuestion testQuestion)
         {
-            return new DalTestQuestion()
+            return new DalQuizQuestion()
             {
                 Id = testQuestion.Id,
                 Text = testQuestion.Text,

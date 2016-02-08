@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DataAccessLayer.API.DTO
+namespace BusinessLogicLayer.API.Entities
 {
-    public class DalTestCategory : IUniqueEntity
+    public class QuizCategory
     {
         public int Id { get; set; }
 

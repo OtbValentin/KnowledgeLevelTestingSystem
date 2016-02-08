@@ -10,7 +10,7 @@ namespace DataAccessLayer.API
     {
         IUserRepository UserRepository { get; }
         IRoleRepository RoleRepository { get; }
-        ITestRepository TestRepository { get; }
+        IQuizRepository TestRepository { get; }
         void SaveChanges();
         // Rollback
     }

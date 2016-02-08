@@ -7,17 +7,17 @@ using System.Data.Entity;
 
 namespace ORM
 {
-    public class TestingSystemContext : DbContext
+    public class QuizFrameworkContext : DbContext
     {
-        public TestingSystemContext()
+        public QuizFrameworkContext()
             : base("DefaultConnection")
         {
 
         }
 
-        public DbSet<Test> Tests { get; set; }
-        public DbSet<TestQuestion> Questions { get; set; }
-        public DbSet<TestCategory> Categories { get; set; }
+        public DbSet<Quiz> Tests { get; set; }
+        public DbSet<QuizQuestion> Questions { get; set; }
+        public DbSet<QuizCategory> Categories { get; set; }
         public DbSet<AnswerOption> AnswerOptions { get; set; }
         public DbSet<Role> Roles { get; set; }
         public DbSet<User> Users { get; set; }

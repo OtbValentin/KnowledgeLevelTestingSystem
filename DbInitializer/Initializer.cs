@@ -8,22 +8,22 @@ using ORM;
 
 namespace DbInitializer
 {
-    public class Initializer : DropCreateDatabaseAlways<TestingSystemContext>
+    public class Initializer : DropCreateDatabaseAlways<QuizFrameworkContext>
     {
-        protected override void Seed(TestingSystemContext context)
+        protected override void Seed(QuizFrameworkContext context)
         {
             Role admin = new Role() { Name = "admin", Description = "Administrator of a site" };
             Role user = new Role() { Name = "user", Description = "Common user" };
             context.Roles.Add(admin);
             context.Roles.Add(user);
-            IEnumerable<TestQuestion> test1Questions = new TestQuestion[] { new TestQuestion() { Text = "The Capital of Greate Britains is ...",
+            IEnumerable<QuizQuestion> test1Questions = new QuizQuestion[] { new QuizQuestion() { Text = "The Capital of Great Britain is ...",
                 AnswerOptions = new AnswerOption[] { new AnswerOption() { Text = "London", IsCorrect = true }, new AnswerOption() { Text = "Paris", IsCorrect = false }, new AnswerOption() { Text = "Minsk", IsCorrect = false } } },
-            new TestQuestion() { Text = "The largest country in the world ...",
+            new QuizQuestion() { Text = "The largest country in the world ...",
                 AnswerOptions = new AnswerOption[] { new AnswerOption() { Text = "Germany", IsCorrect = false }, new AnswerOption() { Text = "China", IsCorrect = false }, new AnswerOption() { Text = "Russia", IsCorrect = true } } },
-            new TestQuestion() { Text = "Prague is the capital of ...",
+            new QuizQuestion() { Text = "Prague is the capital of ...",
                 AnswerOptions = new AnswerOption[] { new AnswerOption() { Text = "Czech Republic", IsCorrect = true }, new AnswerOption() { Text = "France", IsCorrect = false }, new AnswerOption() { Text = "Serbia", IsCorrect = false } } }};
 
-            Test test1 = new Test() { Category = new TestCategory() { Name = "Countries" }, Title = "The capitals of countries", Questions = new List<TestQuestion>(test1Questions) };
+            Quiz test1 = new Quiz() { Category = new QuizCategory() { Name = "Countries" }, Title = "The capitals of countries", Questions = new List<QuizQuestion>(test1Questions) };
 
             context.Tests.Add(test1);
 

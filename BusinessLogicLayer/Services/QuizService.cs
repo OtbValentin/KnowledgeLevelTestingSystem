@@ -11,33 +11,33 @@ using BusinessLogicLayer.Mappers;
 
 namespace BusinessLogicLayer.Services
 {
-    public class TestService : ITestService
+    public class QuizService : IQuizService
     {
         private readonly IUnitOfWork uow;
 
-        public TestService(IUnitOfWork uow)
+        public QuizService(IUnitOfWork uow)
         {
             this.uow = uow;
         }
 
-        public IEnumerable<Test> GetAll()
+        public IEnumerable<Quiz> GetAll()
         {
             return uow.TestRepository.GetAll().Select(dalTest => dalTest.ToBllTest());
         }
 
-        public void Create(Test entity)
+        public void Create(Quiz entity)
         {
             uow.TestRepository.Create(entity.ToDalTest());
             uow.SaveChanges();
         }
 
-        public void Delete(Test entity)
+        public void Delete(Quiz entity)
         {
             uow.TestRepository.Delete(entity.ToDalTest());
             uow.SaveChanges();
         }
 
-        public Test GetById(int id)
+        public Quiz GetById(int id)
         {
             return uow.TestRepository.GetById(id).ToBllTest();
         }

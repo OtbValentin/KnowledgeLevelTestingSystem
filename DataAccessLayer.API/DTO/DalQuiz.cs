@@ -6,20 +6,20 @@ using System.Threading.Tasks;
 
 namespace DataAccessLayer.API.DTO
 {
-    public class DalTest : IUniqueEntity
+    public class DalQuiz : IUniqueEntity
     {
         public int Id { get; set; }
 
         public string Title { get; set; }
 
-        public IEnumerable<DalTestQuestion> Questions { get; set; }
+        public IEnumerable<DalQuizQuestion> Questions { get; set; }
 
-        public DalTestCategory Category { get; set; }
+        public DalQuizCategory Category { get; set; }
 
-        public DalTest()
+        public DalQuiz()
         {
             Title = string.Empty;
-            Questions = new List<DalTestQuestion>();
+            Questions = new List<DalQuizQuestion>();
         }
     }
 }

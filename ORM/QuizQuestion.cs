@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ORM
 {
-    public class TestQuestion
+    public class QuizQuestion
     {
         public int Id { get; set; }
 
@@ -16,9 +16,9 @@ namespace ORM
 
         public int TestId { get; set; }
 
-        public virtual Test Test { get; set; }
+        public virtual Quiz Test { get; set; }
 
-        public TestQuestion()
+        public QuizQuestion()
         {
             AnswerOptions = new List<AnswerOption>();
         }

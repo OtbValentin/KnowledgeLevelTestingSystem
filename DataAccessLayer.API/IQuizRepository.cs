@@ -7,7 +7,7 @@ using DataAccessLayer.API.DTO;
 
 namespace DataAccessLayer.API
 {
-    public interface ITestRepository : IRepository<DalTest>
+    public interface IQuizRepository : IRepository<DalQuiz>
     {
     }
 }

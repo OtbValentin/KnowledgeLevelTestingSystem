@@ -7,11 +7,11 @@ using BusinessLogicLayer.API.Entities;
 
 namespace BusinessLogicLayer.API.Services
 {
-    public interface ITestService
+    public interface IQuizService
     {
-        IEnumerable<Test> GetAll();
-        void Create(Test entity);
-        void Delete(Test entity);
-        Test GetById(int id);
+        IEnumerable<Quiz> GetAll();
+        void Create(Quiz entity);
+        void Delete(Quiz entity);
+        Quiz GetById(int id);
     }
 }

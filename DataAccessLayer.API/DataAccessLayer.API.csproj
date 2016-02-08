@@ -40,10 +40,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DTO\DalTestCategory.cs" />
+    <Compile Include="DTO\DalQuizCategory.cs" />
     <Compile Include="DTO\DalRole.cs" />
-    <Compile Include="DTO\DalTest.cs" />
-    <Compile Include="DTO\DalTestQuestion.cs" />
+    <Compile Include="DTO\DalQuiz.cs" />
+    <Compile Include="DTO\DalQuizQuestion.cs" />
     <Compile Include="DTO\DalUser.cs" />
     <Compile Include="DTO\IUniqueEntity.cs" />
     <Compile Include="IRepository.cs" />
@@ -51,7 +51,7 @@
     <Compile Include="IUnitOfWork.cs" />
     <Compile Include="IUserRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ITestRepository.cs" />
+    <Compile Include="IQuizRepository.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

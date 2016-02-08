@@ -6,14 +6,14 @@ using System.Threading.Tasks;
 
 namespace BusinessLogicLayer.API.Entities
 {
-    public class Test
+    public class Quiz
     {
         public int Id { get; set; }
 
         public string Title { get; set; }
 
-        public TestCategory Category { get; set; }
+        public QuizCategory Category { get; set; }
 
-        public IEnumerable<TestQuestion> Questions { get; set; }
+        public IEnumerable<QuizQuestion> Questions { get; set; }
     }
 }

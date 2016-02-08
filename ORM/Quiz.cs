@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ORM
 {
-    public class Test
+    public class Quiz
     {
         public int Id { get; set; }
 
@@ -14,13 +14,13 @@ namespace ORM
         // Replace with more suited type
         public int? CategoryId { get; set; }
 
-        public virtual TestCategory Category { get; set; }
+        public virtual QuizCategory Category { get; set; }
 
-        public virtual ICollection<TestQuestion> Questions { get; set; }
+        public virtual ICollection<QuizQuestion> Questions { get; set; }
 
-        public Test()
+        public Quiz()
         {
-            Questions = new List<TestQuestion>();
+            Questions = new List<QuizQuestion>();
         }
     }
 }

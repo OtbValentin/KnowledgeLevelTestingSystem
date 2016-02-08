@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DataAccessLayer.API.DTO
+namespace BusinessLogicLayer.API.Entities
 {
-    public class DalTestQuestion : IUniqueEntity
+    public class QuizQuestion
     {
         public int Id { get; set; }
 
@@ -15,10 +15,5 @@ namespace DataAccessLayer.API.DTO
         public IEnumerable<string> AnswerOptions { get; set; }
 
         public string CorrectAnswer { get; set; }
-
-        public DalTestQuestion()
-        {
-            AnswerOptions = new List<string>();
-        }
     }
 }

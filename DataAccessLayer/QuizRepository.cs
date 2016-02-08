@@ -11,20 +11,20 @@ using ORM;
 
 namespace DataAccessLayer
 {
-    public class TestRepository : ITestRepository
+    public class QuizRepository : IQuizRepository
     {
         private readonly DbContext context;
 
-        public TestRepository(DbContext context)
+        public QuizRepository(DbContext context)
         {
             this.context = context;
         }
 
-        public void Create(DalTest entity)
+        public void Create(DalQuiz entity)
         {
-            Test test = new Test() { Title = entity.Title, CategoryId = entity.Category.Id };
+            Quiz test = new Quiz() { Title = entity.Title, CategoryId = entity.Category.Id };
 
-            test.Questions = entity.Questions.Select(question => new TestQuestion()
+            test.Questions = entity.Questions.Select(question => new QuizQuestion()
             {
                 Text = question.Text,
                 AnswerOptions = question.AnswerOptions.Select(answer => new AnswerOption()
@@ -34,31 +34,31 @@ namespace DataAccessLayer
                 }).ToList()
             }).ToList();
 
-            context.Set<Test>().Add(test);
+            context.Set<Quiz>().Add(test);
         }
 
-        public void Delete(DalTest entity)
+        public void Delete(DalQuiz entity)
         {
-            Test test = context.Set<Test>().FirstOrDefault(t => t.Id == entity.Id);
+            Quiz test = context.Set<Quiz>().FirstOrDefault(t => t.Id == entity.Id);
 
             if (test != null)
             {
-                context.Set<Test>().Remove(test);
+                context.Set<Quiz>().Remove(test);
             }
         }
 
-        public IEnumerable<DalTest> GetAll()
+        public IEnumerable<DalQuiz> GetAll()
         {
-            return context.Set<Test>().Select(test => new DalTest()
+            return context.Set<Quiz>().Select(test => new DalQuiz()
             {
                 Id = test.Id,
                 Title = test.Title,
-                Category = new DalTestCategory()
+                Category = new DalQuizCategory()
                 {
                     Id = test.Category.Id,
                     Name = test.Category.Name
                 },
-                Questions = test.Questions.Select(question => new DalTestQuestion()
+                Questions = test.Questions.Select(question => new DalQuizQuestion()
                 {
                     Id = question.Id,
                     Text = question.Text,
@@ -68,25 +68,25 @@ namespace DataAccessLayer
             });
         }
 
-        public DalTest GetById(int id)
+        public DalQuiz GetById(int id)
         {
-            Test test = context.Set<Test>().FirstOrDefault(t => t.Id == id);
+            Quiz test = context.Set<Quiz>().FirstOrDefault(t => t.Id == id);
 
             if (test == null)
             {
                 return null;
             }
 
-            return new DalTest()
+            return new DalQuiz()
             {
                 Id = test.Id,
                 Title = test.Title,
-                Category = new DalTestCategory()
+                Category = new DalQuizCategory()
                 {
                     Id = test.Category.Id,
                     Name = test.Category.Name
                 },
-                Questions = test.Questions.Select(question => new DalTestQuestion()
+                Questions = test.Questions.Select(question => new DalQuizQuestion()
                 {
                     Id = question.Id,
                     Text = question.Text,
@@ -96,16 +96,16 @@ namespace DataAccessLayer
             };
         }
         // Clear
-        public void Update(DalTest entity)
+        public void Update(DalQuiz entity)
         {
-            Test test = context.Set<Test>().FirstOrDefault(t => t.Id == entity.Id);
+            Quiz test = context.Set<Quiz>().FirstOrDefault(t => t.Id == entity.Id);
 
             if (test != null)
             {
                 test.Questions.Clear();
                 test.CategoryId = entity.Category.Id;
                 test.Title = entity.Title;
-                test.Questions = entity.Questions.Select(question => new TestQuestion()
+                test.Questions = entity.Questions.Select(question => new QuizQuestion()
                 {
                     Text = question.Text,
                     AnswerOptions = question.AnswerOptions.Select(answer => new AnswerOption()
