@@ -1,7 +1,5 @@
 ﻿using BusinessLogicLayer.API.Entities;
 using BusinessLogicLayer.API.Services;
-using DependenciesConfig;
-using Ninject;
 using PresentationLayerWebMvc.Models;
 using System;
 using System.Collections.Generic;
@@ -13,44 +11,33 @@ namespace PresentationLayerWebMvc.Controllers
 {
     public class QuizController : Controller
     {
-        private readonly IQuizService testService;
+        private readonly IQuizService quizService;
 
         public QuizController(IQuizService testService)
         {
-            this.testService = testService;
+            this.quizService = testService;
         }
-
-        [HttpGet]
-        public ActionResult Pass(int id)
+        // GET: Quizz
+        public ActionResult Index()
         {
-            Quiz requestedTest = testService.GetById(id);
-
-            if (requestedTest == null)
+            IEnumerable<QuizIndexViewModel> quizzes = quizService.GetAll().Select(quiz => new QuizIndexViewModel()
             {
-                return HttpNotFound();
-            }
+                Id = quiz.Id,
+                Title = quiz.Title,
+                QuestionsQuantity = quiz.Questions.Count(),
+                TimeToSubmit = new TimeSpan(0, 0, 10, 0, 0)
+            }).ToList();
 
-            QuizPassViewModel testView = new QuizPassViewModel()
-            {
-                Id = requestedTest.Id,
-                Title = requestedTest.Title,
-                Questions = requestedTest.Questions.Select(question => new QuizQuestionPassViewModel()
-                {
-                    Text = question.Text,
-                    Answers = question.AnswerOptions.ToArray(),
-                }).ToList()
-            };
-
-            return View(testView);
+            return View(quizzes);
         }
 
         [HttpPost]
         public ActionResult Result(SubmittedQuizViewModel test)
         {
-            Quiz passedTest = testService.GetById(test.Id);
+            Quiz passedTest = quizService.GetById(test.Id);
 
             QuizResultViewModel result = new QuizResultViewModel()
-            { Title = passedTest.Title, Questions = new List<QuizQuestionResultViewModel>()};
+            { Title = passedTest.Title, Questions = new List<QuizQuestionResultViewModel>() };
 
             for (int i = 0; i < test.Answers.Count; i++)
             {
@@ -69,86 +56,128 @@ namespace PresentationLayerWebMvc.Controllers
 
             return View(result);
         }
-        [HttpGet]
-        public ActionResult Index()
-        {
-            IEnumerable<QuizIndexViewModel> tests = testService.GetAll().Select(test => new QuizIndexViewModel()
-            {
-                Id = test.Id,
-                Title = test.Title,
-                QuestionsQuantity = test.Questions.Count(),
-                TimeToSubmit = new TimeSpan(0, 0, 10, 0, 0)
-            }).ToList();
-
-            return View(tests);
-        }
 
         [HttpGet]
-        public ActionResult Edit(int id)
+        public ActionResult Pass(int id)
         {
-            return View();
-        }
+            Quiz quiz = quizService.GetById(id);
 
-        [HttpPost]
-        public ActionResult Edit()
-        {
-            return View();
-        }
-
-        [HttpGet]
-        public ActionResult Delete(int id)
-        {
-            Quiz test = testService.GetById(id);
-
-            if (test == null)
+            if (quiz == null)
             {
                 return HttpNotFound();
             }
 
-            return View(new QuizDeleteViewModel() { Id = test.Id, Title = test.Title });
-            //return RedirectToAction("Index");
-        }
-
-        [HttpPost]
-        [ActionName("Delete")]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            Quiz test = testService.GetById(id);
-
-            if (test == null)
+            QuizPassViewModel quizView = new QuizPassViewModel()
             {
-                return HttpNotFound();
-            }
+                Id = quiz.Id,
+                Title = quiz.Title,
+                Questions = quiz.Questions.Select(question => new QuizQuestionPassViewModel()
+                {
+                    Text = question.Text,
+                    Answers = question.AnswerOptions.ToArray(),
+                }).ToList()
+            };
 
-            testService.Delete(test);
-
-            return RedirectToAction("Index");
+            return View(quizView);
         }
 
-        [HttpGet]
+        // GET: Quizz/Details/5
+        public ActionResult Details(int id)
+        {
+            return View();
+        }
+
+        // GET: Quizz/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // Check test integrity
+        // Categories
+        // POST: Quizz/Create
         [HttpPost]
-        public ActionResult Create(QuizCreateViewModel test)
+        public ActionResult Create(QuizCreateViewModel quiz)
         {
-            IKernel kernel = new StandardKernel(new BindingModule());
-            IQuizService testService = kernel.Get<IQuizService>();
-
-            IEnumerable<QuizQuestion> testQuestions = test.Questions.Select(q => new QuizQuestion()
+            try
             {
-                Text = q.Text,
-                AnswerOptions = q.Answers.Split(';'),
-                CorrectAnswer = q.CorrectAnswer
-            }).ToList();
+                IEnumerable<QuizQuestion> quizQuestions = quiz.Questions.Select(q => new QuizQuestion()
+                {
+                    Text = q.Text,
+                    AnswerOptions = q.Answers.Split(';'),
+                    CorrectAnswer = q.CorrectAnswer
+                }).ToList();
 
-            Quiz newTest = new Quiz() { Title = test.Title, Questions = testQuestions, Category = new QuizCategory() { Name = "Countries", Id = 1} };
-            testService.Create(newTest);
+                Quiz newTest = new Quiz() { Title = quiz.Title, Questions = quizQuestions, Category = new QuizCategory() { Name = "Countries", Id = 1 } };
+                quizService.Create(newTest);
 
-            return RedirectToAction("Create");
+                return RedirectToAction("Index");
+            }
+            catch
+            {
+                return View();
+            }
+        }
+
+        // GET: Quizz/Edit/5
+        public ActionResult Edit(int id)
+        {
+            return View();
+        }
+
+        // POST: Quizz/Edit/5
+        [HttpPost]
+        public ActionResult Edit(int id, FormCollection collection)
+        {
+            try
+            {
+                // TODO: Add update logic here
+
+                return RedirectToAction("Index");
+            }
+            catch
+            {
+                return View();
+            }
+        }
+
+        // GET: Quizz/Delete/5
+        public ActionResult Delete(int id)
+        {
+            Quiz quiz = quizService.GetById(id);
+
+            if (quiz == null)
+            {
+                return HttpNotFound();
+            }
+
+            QuizDeleteViewModel model = new QuizDeleteViewModel() { Id = quiz.Id, Title = quiz.Title };
+
+            return View(model);
+        }
+
+        // POST: Quizz/Delete/5
+        [HttpPost]
+        [ActionName("Delete")]
+        public ActionResult DeleteConfirm(int id)
+        {
+            try
+            {
+                // TODO: Add delete logic here
+                Quiz quiz = quizService.GetById(id);
+
+                if (quiz == null)
+                {
+                    return HttpNotFound();
+                }
+
+                quizService.Delete(id);
+
+                return RedirectToAction("Index");
+            }
+            catch
+            {
+                return View();
+            }
         }
     }
 }

@@ -26,9 +26,9 @@ namespace BusinessLogicLayer.Services
             uow.SaveChanges();
         }
 
-        public void Delete(Role role)
+        public void Delete(int id)
         {
-            uow.RoleRepository.Delete(role.ToDalRole());
+            uow.RoleRepository.Delete(id);
             uow.SaveChanges();
         }
 
@@ -56,9 +56,7 @@ namespace BusinessLogicLayer.Services
 
         public IEnumerable<Role> GetUserRolesByEmail(string email)
         {
-            //return uow.RoleRepository.
-
-            return new List<Role>();
+            throw new NotImplementedException();
         }
 
         public void Update(Role role)

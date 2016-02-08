@@ -11,7 +11,8 @@ namespace BusinessLogicLayer.API.Services
     {
         IEnumerable<User> GetAll();
         void Create(User entity);
-        void Delete(User entity);
+        void Delete(int id);
+        void Update(User entity);
         User GetById(int id);
         User GetByEmail(string email);
     }

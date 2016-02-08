@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.Mvc;
 
 namespace PresentationLayerWebMvc.Models
 {
@@ -28,6 +29,7 @@ namespace PresentationLayerWebMvc.Models
         [Required]
         [EmailAddress]
         [Display(Name = "Email")]
+        [Remote("Namecheck", "Account", ErrorMessage = "This email is already taken.")]
         public string Email { get; set; }
 
         [Required]
@@ -38,7 +40,7 @@ namespace PresentationLayerWebMvc.Models
 
         [DataType(DataType.Password)]
         [Display(Name = "Confirm password")]
-        [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
+        [System.ComponentModel.DataAnnotations.Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
     }
 }

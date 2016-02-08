@@ -33,9 +33,9 @@ namespace DataAccessLayer
             context.Set<User>().Add(user);
         }
 
-        public void Delete(DalUser entity)
+        public void Delete(int id)
         {
-            User user = context.Set<User>().FirstOrDefault(u => u.Id == entity.Id);
+            User user = context.Set<User>().FirstOrDefault(u => u.Id == id);
 
             if (user != null)
             {
@@ -110,9 +110,11 @@ namespace DataAccessLayer
             IEnumerable<Role> avaliableRoles = context.Set<Role>().ToList();
             List<Role> roles = new List<Role>();
 
-            foreach (Role role in avaliableRoles)
+            foreach (string roleName in roleNames)
             {
-                if (roleNames.Contains(role.Name.ToLower()))
+                Role role = avaliableRoles.FirstOrDefault(r => r.Name.ToLower() == roleName.ToLower());
+
+                if (role != null)
                 {
                     roles.Add(role);
                 }

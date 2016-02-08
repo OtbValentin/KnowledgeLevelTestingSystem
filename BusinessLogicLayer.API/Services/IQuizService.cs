@@ -11,7 +11,8 @@ namespace BusinessLogicLayer.API.Services
     {
         IEnumerable<Quiz> GetAll();
         void Create(Quiz entity);
-        void Delete(Quiz entity);
+        void Delete(int id);
+        void Update(Quiz entity);
         Quiz GetById(int id);
     }
 }

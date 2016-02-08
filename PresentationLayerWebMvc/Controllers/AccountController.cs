@@ -57,6 +57,7 @@ namespace PresentationLayerWebMvc.Controllers
                     ModelState.AddModelError("", "Incorrect login or password");
                 }
             }
+
             return View(model);
         }
 
@@ -66,6 +67,19 @@ namespace PresentationLayerWebMvc.Controllers
             return View();
         }
 
+        public ActionResult Namecheck(string email)
+        {
+            User user = userService.GetByEmail(email);
+
+            bool isValid = false;
+
+            if (user == null)
+            {
+                isValid = true;
+            }
+
+            return Json(isValid, JsonRequestBehavior.AllowGet);
+        }
         [HttpPost]
         public ActionResult Register(RegisterViewModel model)
         {

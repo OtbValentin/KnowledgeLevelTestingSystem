@@ -13,7 +13,7 @@ namespace BusinessLogicLayer.API.Services
         Role GetRoleByName(string name);
         IEnumerable<Role> GetUserRolesByEmail(string email);
         void Create(Role role);
-        void Delete(Role role);
+        void Delete(int id);
         void Update(Role role);
         Role GetById(int id);
     }

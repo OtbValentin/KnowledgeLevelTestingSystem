@@ -26,9 +26,9 @@ namespace BusinessLogicLayer.Services
             uow.SaveChanges();
         }
 
-        public void Delete(User entity)
+        public void Delete(int id)
         {
-            uow.UserRepository.Delete(entity.ToDalUser());
+            uow.UserRepository.Delete(id);
             uow.SaveChanges();
         }
 
@@ -52,6 +52,15 @@ namespace BusinessLogicLayer.Services
             }
 
             return user.ToBllUser();
+        }
+
+        public void Update(User entity)
+        {
+            if (entity != null)
+            {
+                uow.UserRepository.Update(entity.ToDalUser());
+                uow.SaveChanges();
+            }
         }
     }
 }

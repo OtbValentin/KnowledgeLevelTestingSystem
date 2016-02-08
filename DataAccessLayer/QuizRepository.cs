@@ -37,9 +37,9 @@ namespace DataAccessLayer
             context.Set<Quiz>().Add(test);
         }
 
-        public void Delete(DalQuiz entity)
+        public void Delete(int id)
         {
-            Quiz test = context.Set<Quiz>().FirstOrDefault(t => t.Id == entity.Id);
+            Quiz test = context.Set<Quiz>().FirstOrDefault(t => t.Id == id);
 
             if (test != null)
             {

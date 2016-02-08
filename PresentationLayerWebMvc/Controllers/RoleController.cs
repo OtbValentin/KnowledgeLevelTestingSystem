@@ -17,7 +17,7 @@ namespace PresentationLayerWebMvc.Controllers
         {
             this.roleService = roleService;
         }
-        // GET: Role
+        // GET: Rolee
         public ActionResult Index()
         {
             IEnumerable<Role> roles = roleService.GetAll();
@@ -28,24 +28,39 @@ namespace PresentationLayerWebMvc.Controllers
             return View(roleViews);
         }
 
-        [HttpGet]
+        // GET: Rolee/Details/5
+        public ActionResult Details(int id)
+        {
+            return View();
+        }
+
+        // GET: Rolee/Create
         public ActionResult Create()
         {
             return View();
         }
 
+        // POST: Rolee/Create
         [HttpPost]
-        public ActionResult Create(RoleDisplayViewModel role)
+        public ActionResult Create(RoleCreateViewModel role)
         {
-            if (ModelState.IsValid)
+            
+            try
             {
-                roleService.Create(new Role() { Name = role.Name, Description = role.Description });
-            }
+                if (ModelState.IsValid)
+                {
+                    roleService.Create(new Role() { Name = role.Name, Description = role.Description });
+                }
 
-            return RedirectToAction("Index");
+                return RedirectToAction("Index");
+            }
+            catch
+            {
+                return View();
+            }
         }
 
-        [HttpGet]
+        // GET: Rolee/Edit/5
         public ActionResult Edit(int id)
         {
             Role role = roleService.GetById(id);
@@ -58,24 +73,32 @@ namespace PresentationLayerWebMvc.Controllers
             return View(new RoleEditViewModel() { Name = role.Name, Description = role.Description });
         }
 
+        // POST: Rolee/Edit/5
         [HttpPost]
         public ActionResult Edit(RoleEditViewModel role)
         {
-            Role roleToEdit = roleService.GetById(role.Id);
-
-            if (role == null)
+            try
             {
-                return HttpNotFound();
+                Role roleToEdit = roleService.GetById(role.Id);
+
+                if (role == null)
+                {
+                    return HttpNotFound();
+                }
+
+                roleToEdit.Name = role.Name;
+                roleToEdit.Description = role.Description;
+                roleService.Update(roleToEdit);
+
+                return RedirectToAction("Index");
             }
-
-            roleToEdit.Name = role.Name;
-            roleToEdit.Description = role.Description;
-            roleService.Update(roleToEdit);
-
-            return RedirectToAction("Index");
+            catch
+            {
+                return View();
+            }
         }
 
-        [HttpGet]
+        // GET: Rolee/Delete/5
         public ActionResult Delete(int id)
         {
             Role role = roleService.GetById(id);
@@ -88,20 +111,28 @@ namespace PresentationLayerWebMvc.Controllers
             return View(new RoleDisplayViewModel() { Id = role.Id, Name = role.Name, Description = role.Description });
         }
 
+        // POST: Rolee/Delete/5
         [HttpPost]
         [ActionName("Delete")]
-        public ActionResult DeleteConfirmed(int id)
+        public ActionResult DeleteConfirm(int id)
         {
-            Role role = roleService.GetById(id);
-
-            if (role == null)
+            try
             {
-                return HttpNotFound();
+                Role role = roleService.GetById(id);
+
+                if (role == null)
+                {
+                    return HttpNotFound();
+                }
+
+                roleService.Delete(id);
+
+                return RedirectToAction("Index");
             }
-
-            roleService.Delete(role);
-
-            return RedirectToAction("Index");
+            catch
+            {
+                return View();
+            }
         }
     }
 }

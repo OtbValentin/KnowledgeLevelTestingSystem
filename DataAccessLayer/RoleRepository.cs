@@ -26,9 +26,9 @@ namespace DataAccessLayer
             context.Set<Role>().Add(role);
         }
 
-        public void Delete(DalRole entity)
+        public void Delete(int id)
         {
-            Role role = context.Set<Role>().FirstOrDefault(r => r.Id == entity.Id);
+            Role role = context.Set<Role>().FirstOrDefault(r => r.Id == id);
 
             if (role != null)
             {
@@ -43,7 +43,7 @@ namespace DataAccessLayer
                 Id = role.Id,
                 Name = role.Name,
                 Description = role.Description
-            }).ToList();
+            });
         }
 
         public DalRole GetById(int id)

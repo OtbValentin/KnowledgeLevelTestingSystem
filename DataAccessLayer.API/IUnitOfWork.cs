@@ -12,6 +12,5 @@ namespace DataAccessLayer.API
         IRoleRepository RoleRepository { get; }
         IQuizRepository TestRepository { get; }
         void SaveChanges();
-        // Rollback
     }
 }

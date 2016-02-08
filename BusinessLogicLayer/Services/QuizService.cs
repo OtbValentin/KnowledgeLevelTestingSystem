@@ -32,12 +32,6 @@ namespace BusinessLogicLayer.Services
             uow.SaveChanges();
         }
 
-        public void Delete(Quiz entity)
-        {
-            uow.TestRepository.Delete(entity.ToDalTest());
-            uow.SaveChanges();
-        }
-
         public Quiz GetById(int id)
         {
             DalQuiz quiz = uow.TestRepository.GetById(id);
@@ -48,6 +42,21 @@ namespace BusinessLogicLayer.Services
             }
 
             return quiz.ToBllTest();
+        }
+
+        public void Delete(int id)
+        {
+            uow.TestRepository.Delete(id);
+            uow.SaveChanges();
+        }
+
+        public void Update(Quiz entity)
+        {
+            if (entity != null)
+            {
+                uow.TestRepository.Update(entity.ToDalTest());
+                uow.SaveChanges();
+            }
         }
     }
 }
