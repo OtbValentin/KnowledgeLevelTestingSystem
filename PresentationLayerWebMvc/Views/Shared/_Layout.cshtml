@@ -23,17 +23,20 @@
                         </ul>
                     </div>
                 </div>
-                <div class="col-md-8 table-bordered" id="main-content">
-                    <h2 class="text-center">Main content</h2>
+                <div class="col-md-8" id="main-content">
+                    <h2 class="text-center">@ViewBag.Title</h2>
                     @RenderBody()
                 </div>
                 <div class="col-md-2">
-                    @Html.Partial("_AdminPanel")
+                    @if (HttpContext.Current.User.IsInRole("admin"))
+                    {
+                        @Html.Partial("_AdminPanel")
+                    }
                 </div>
             </div>
-            <hr />
         </div>
     </div>
+    <hr />
     @Html.Partial("_Footer")
 
     @Scripts.Render("~/bundles/jquery")

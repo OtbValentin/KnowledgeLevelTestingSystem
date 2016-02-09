@@ -33,7 +33,7 @@ namespace DbInitializer
             newUser = new User() { Email = "glhf@gmail.com", CreationDate = DateTime.Now, PasswordHash = "1234575" };
             newUser.Roles.Add(user);
             context.Users.Add(newUser);
-            newUser = new User() { Email = "valikking@gmail.com", CreationDate = DateTime.Now, PasswordHash = "1234575" };
+            newUser = new User() { Email = "otb@gmail.com", CreationDate = DateTime.Now, PasswordHash = "1234575" };
             newUser.Roles.Add(admin);
             newUser.Roles.Add(user);
             context.Users.Add(newUser);

@@ -41,4 +41,13 @@ namespace PresentationLayerWebMvc.Models
             Roles = new List<string>();
         }
     }
+
+    public class UserDeleteViewModel
+    {
+        [HiddenInput]
+        public int Id { get; set; }
+
+        [EmailAddress]
+        public string Email { get; set; }
+    }
 }

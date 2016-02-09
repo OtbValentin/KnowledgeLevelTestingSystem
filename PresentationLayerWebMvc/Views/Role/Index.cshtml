@@ -1,15 +1,13 @@
 ﻿@model IEnumerable<PresentationLayerWebMvc.Models.RoleDisplayViewModel>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Roles";
 }
-
-<h2>Index</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
-<table class="table">
+<table class="table table-striped table-bordered">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.Name)

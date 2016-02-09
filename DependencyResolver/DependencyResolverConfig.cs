@@ -29,18 +29,24 @@ namespace DependenciesConfig
 
         private static void Configure(IKernel kernel, bool isWeb)
         {
-            //if (isWeb)
-            //{
-            //    kernel.Bind<IUnitOfWork>().To<UnitOfWork>().InRequestScope();
-            //    kernel.Bind<DbContext>().To<TestingSystemContext>().InRequestScope();
-            //}
-            //else
-            //{
-            //    kernel.Bind<IUnitOfWork>().To<UnitOfWork>().InSingletonScope();
-            //    kernel.Bind<DbContext>().To<TestingSystemContext>().InSingletonScope();
-            //}
+            if (isWeb)
+            {
+                kernel.Bind<IUnitOfWork>().To<UnitOfWork>().InRequestScope();
+                kernel.Bind<DbContext>().To<QuizFrameworkContext>().InRequestScope();
+            }
+            else
+            {
+                kernel.Bind<IUnitOfWork>().To<UnitOfWork>().InSingletonScope();
+                kernel.Bind<DbContext>().To<QuizFrameworkContext>().InSingletonScope();
+            }
 
-            kernel.Load(new BindingModule());
+            kernel.Bind<IQuizService>().To<QuizService>();
+            kernel.Bind<IRoleService>().To<RoleService>();
+            kernel.Bind<IUserService>().To<UserService>();
+
+            kernel.Bind<IQuizRepository>().To<QuizRepository>();
+            kernel.Bind<IUserRepository>().To<UserRepository>();
+            kernel.Bind<IRoleRepository>().To<RoleRepository>();
         }
     }
 

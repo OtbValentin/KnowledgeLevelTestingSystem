@@ -1,11 +1,8 @@
 ﻿@model PresentationLayerWebMvc.Models.QuizCreateViewModel
 
 @{
-    ViewBag.Title = "Add";
+    ViewBag.Title = "Create quiz";
 }
-
-<h2>Add</h2>
-
 
 @using (Html.BeginForm())
 {
@@ -54,7 +51,7 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <p><a class="addLink">Добавить новый элемент</a></p>
+                <p><a class="addLink">Add new question</a></p>
                 <input type="submit" value="Create" class="btn btn-default" />
             </div>
         </div>

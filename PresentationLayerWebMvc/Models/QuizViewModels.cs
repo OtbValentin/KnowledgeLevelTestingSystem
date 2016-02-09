@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.Mvc;
 
 namespace PresentationLayerWebMvc.Models
 {
@@ -36,6 +37,10 @@ namespace PresentationLayerWebMvc.Models
         public string Title { get; set; }
 
         public List<QuizQuestionResultViewModel> Questions { get; set; }
+
+        public int Correct { get; set; }
+
+        public int Total { get; set; }
     }
 
     public class QuizQuestionResultViewModel
@@ -51,14 +56,22 @@ namespace PresentationLayerWebMvc.Models
 
     public class QuizIndexViewModel
     {
+        [HiddenInput]
         public int Id { get; set; }
+
+        [Display(Name = "Title")]
         public string Title { get; set; }
+
+        [Display(Name = "Questions")]
         public int QuestionsQuantity { get; set; }
+
+        [Display(Name = "Time limit")]
         public TimeSpan TimeToSubmit { get; set; }
     }
 
     public class QuizEditViewModel
     {
+        [HiddenInput]
         public int Id { get; set; }
         public string Title { get; set; }
         //public IEnumerable<Q>
@@ -68,16 +81,19 @@ namespace PresentationLayerWebMvc.Models
     public class QuizCreateViewModel
     {
         public string Title { get; set; }
+
+        [Display(Name ="Time(minutes)")]
         public int MinutesToSubmit { get; set; }
+
         public List<QuizQuestionCreateViewModel> Questions { get; set; }
     }
 
     public class QuizDeleteViewModel
     {
-        [Display(Name ="Id")]
+        [Display(Name = "Id")]
         public int Id { get; set; }
 
-        [Display(Name ="Title")]
+        [Display(Name = "Title")]
         public string Title { get; set; }
     }
 
@@ -86,10 +102,10 @@ namespace PresentationLayerWebMvc.Models
         [Display(Name = "Text")]
         public string Text { get; set; }
 
-        [Display(Name ="Answers(; delimited)")]
+        [Display(Name = "Answers(; delimited)")]
         public string Answers { get; set; }
-        
-        [Display(Name ="Correct answer")]
+
+        [Display(Name = "Correct answer")]
         public string CorrectAnswer { get; set; }
     }
 }

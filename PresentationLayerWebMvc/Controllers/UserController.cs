@@ -20,7 +20,7 @@ namespace PresentationLayerWebMvc.Controllers
             this.userService = userService;
             this.roleService = roleService;
         }
-        // GET: Userr
+ 
         public ActionResult Index()
         {
             string delimeter = " ";
@@ -49,35 +49,6 @@ namespace PresentationLayerWebMvc.Controllers
             return resultString.ToString();
         }
 
-        // GET: Userr/Details/5
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
-
-        // GET: Userr/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: Userr/Create
-        [HttpPost]
-        public ActionResult Create(FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add insert logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: Userr/Edit/5
         public ActionResult Edit(int id)
         {
             User user = userService.GetById(id);
@@ -97,24 +68,22 @@ namespace PresentationLayerWebMvc.Controllers
             return View(userModel);
         }
 
-        // POST: Userr/Edit/5
         [HttpPost]
         public ActionResult Edit(UserEditViewModel userModel)
         {
             try
             {
-                User user = userService.GetById(userModel.Id);
-
-                if (user != null)
+                if (ModelState.IsValid)
                 {
-                    user.Email = userModel.Username;
-                    user.Roles = userModel.Roles.Select(s => roleService.GetRoleByName(s)).ToList();
-                    userService.Update(user);
+                    User user = userService.GetById(userModel.Id);
 
-                    return RedirectToAction("Index");
+                    if (user != null)
+                    {
+                        user.Email = userModel.Username;
+                        user.Roles = userModel.Roles.Select(s => roleService.GetRoleByName(s)).ToList();
+                        userService.Update(user);
+                    }
                 }
-                // TODO: Add update logic here
-
                 return RedirectToAction("Index");
             }
             catch
@@ -123,19 +92,32 @@ namespace PresentationLayerWebMvc.Controllers
             }
         }
 
-        // GET: Userr/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            User user = userService.GetById(id);
+
+            if (user == null)
+            {
+                return HttpNotFound();
+            }
+
+            return View(new UserDeleteViewModel() { Id = user.Id, Email = user.Email });
         }
 
-        // POST: Userr/Delete/5
         [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        [ActionName("Delete")]
+        public ActionResult DeleteConfirm(int id)
         {
             try
             {
-                // TODO: Add delete logic here
+                User user = userService.GetById(id);
+
+                if (user == null)
+                {
+                    return HttpNotFound();
+                }
+
+                userService.Delete(user.Id);
 
                 return RedirectToAction("Index");
             }

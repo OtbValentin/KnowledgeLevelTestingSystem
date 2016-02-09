@@ -28,17 +28,18 @@ namespace PresentationLayerWebMvc.Controllers
             return View();
         }
 
-        [HttpGet]
-        public ActionResult Login()
-        {
-            return View();
-        }
-
+        [Authorize]
         public ActionResult Logoff()
         {
             FormsAuthentication.SignOut();
 
             return RedirectToAction("Index", "Home");
+        }
+
+        [HttpGet]
+        public ActionResult Login()
+        {
+            return View();
         }
 
         [HttpPost]
@@ -68,12 +69,6 @@ namespace PresentationLayerWebMvc.Controllers
             return View(model);
         }
 
-        [HttpGet]
-        public ActionResult Register()
-        {
-            return View();
-        }
-
         public ActionResult Namecheck(string email)
         {
             User user = userService.GetByEmail(email);
@@ -87,6 +82,13 @@ namespace PresentationLayerWebMvc.Controllers
 
             return Json(isValid, JsonRequestBehavior.AllowGet);
         }
+
+        [HttpGet]
+        public ActionResult Register()
+        {
+            return View();
+        }
+
         [HttpPost]
         public ActionResult Register(RegisterViewModel model)
         {

@@ -7,6 +7,8 @@ using System.Web.Security;
 using BusinessLogicLayer.API.Entities;
 using BusinessLogicLayer.API.Services;
 using System.Web.Mvc;
+using Ninject;
+using DependenciesConfig;
 
 namespace PresentationLayerWebMvc.CommonMembership
 {
@@ -29,21 +31,21 @@ namespace PresentationLayerWebMvc.CommonMembership
 
         public override void CreateRole(string roleName)
         {
-            Role role = new Role() { Name = roleName, Description = roleName };
+            if (!string.IsNullOrEmpty(roleName))
+            {
+                Role role = new Role() { Name = roleName, Description = roleName };
 
-            IRoleService roleService = DependencyResolver.Current.GetService<IRoleService>();
+                IKernel kernel = new StandardKernel(new BindingModule());
+                IRoleService roleService = kernel.Get<IRoleService>();
 
-            roleService.Create(role);
-        }
-
-        public override bool DeleteRole(string roleName, bool throwOnPopulatedRole)
-        {
-            throw new NotImplementedException();
+                roleService.Create(role);
+            }
         }
 
         public override bool RoleExists(string roleName)
         {
-            IRoleService roleService = DependencyResolver.Current.GetService<IRoleService>();
+            IKernel kernel = new StandardKernel(new BindingModule());
+            IRoleService roleService = kernel.Get<IRoleService>();
 
             Role role = roleService.GetRoleByName(roleName);
 
@@ -57,21 +59,25 @@ namespace PresentationLayerWebMvc.CommonMembership
 
         public override string[] GetAllRoles()
         {
-            IRoleService roleService = DependencyResolver.Current.GetService<IRoleService>();
+            IKernel kernel = new StandardKernel(new BindingModule());
+            IRoleService roleService = kernel.Get<IRoleService>();
 
             return roleService.GetAll().Select(role => role.Name).ToArray();
         }
 
         public override string[] GetRolesForUser(string username)
         {
-            IRoleService roleService = DependencyResolver.Current.GetService<IRoleService>();
+            IKernel kernel = new StandardKernel(new BindingModule());
+            IUserService userService = kernel.Get<IUserService>();
 
-            return roleService.GetUserRolesByEmail(username).Select(role => role.Name).ToArray();
-        }
+            User user = userService.GetByEmail(username);
 
-        public override string[] GetUsersInRole(string roleName)
-        {
-            throw new NotImplementedException();
+            if (user == null)
+            {
+                return new string[0];
+            }
+
+            return userService.GetByEmail(username).Roles.Select(role => role.Name).ToArray();
         }
 
         public override bool IsUserInRole(string username, string roleName)
@@ -80,6 +86,16 @@ namespace PresentationLayerWebMvc.CommonMembership
         }
 
         #region Not implemented methods
+        public override string[] GetUsersInRole(string roleName)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override bool DeleteRole(string roleName, bool throwOnPopulatedRole)
+        {
+            throw new NotImplementedException();
+        }
+
         public override void AddUsersToRoles(string[] usernames, string[] roleNames)
         {
             throw new NotImplementedException();

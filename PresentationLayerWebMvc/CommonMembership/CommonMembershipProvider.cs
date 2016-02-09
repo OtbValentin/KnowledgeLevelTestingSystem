@@ -124,13 +124,15 @@ namespace PresentationLayerWebMvc.CommonMembership
                     Roles = new List<Role>() { new Role() { Name = "user" } }
                 };
 
-                IUserService userService = System.Web.Mvc.DependencyResolver.Current.GetService<IUserService>();
+                IKernel kernel = new StandardKernel(new BindingModule());
+                IUserService userService = kernel.Get<IUserService>();
+
                 userService.Create(newUser);
 
                 status = MembershipCreateStatus.Success;
 
                 //Fix 1
-                return new MembershipUser("CommonMembershipProvider", newUser.Email, 1, newUser.Email,
+                return new MembershipUser("CommonMembershipProvider", newUser.Email, newUser.Id, newUser.Email,
                 null, null, true, false, newUser.CreationDate, DateTime.MinValue,
                 DateTime.MinValue, DateTime.MinValue, DateTime.MinValue);
             }
@@ -149,7 +151,6 @@ namespace PresentationLayerWebMvc.CommonMembership
 
         public override MembershipUser GetUser(string username, bool userIsOnline)
         {
-            //IUserService userService = DependencyResolver.Current.GetService<IUserService>();
             IKernel kernel = new StandardKernel(new BindingModule());
             IUserService userService = kernel.Get<IUserService>();
 
@@ -173,7 +174,8 @@ namespace PresentationLayerWebMvc.CommonMembership
                 return false;
             }
 
-            IUserService userService = DependencyResolver.Current.GetService<IUserService>();
+            IKernel kernel = new StandardKernel(new BindingModule());
+            IUserService userService = kernel.Get<IUserService>();
 
             User user = userService.GetByEmail(username);
 

@@ -9,6 +9,7 @@ using System.Web.Mvc;
 
 namespace PresentationLayerWebMvc.Controllers
 {
+    [Authorize]
     public class QuizController : Controller
     {
         private readonly IQuizService quizService;
@@ -17,7 +18,7 @@ namespace PresentationLayerWebMvc.Controllers
         {
             this.quizService = testService;
         }
-        // GET: Quizz
+
         public ActionResult Index()
         {
             IEnumerable<QuizIndexViewModel> quizzes = quizService.GetAll().Select(quiz => new QuizIndexViewModel()
@@ -32,29 +33,41 @@ namespace PresentationLayerWebMvc.Controllers
         }
 
         [HttpPost]
-        public ActionResult Result(SubmittedQuizViewModel test)
+        public ActionResult Result(SubmittedQuizViewModel quiz)
         {
-            Quiz passedTest = quizService.GetById(test.Id);
-
-            QuizResultViewModel result = new QuizResultViewModel()
-            { Title = passedTest.Title, Questions = new List<QuizQuestionResultViewModel>() };
-
-            for (int i = 0; i < test.Answers.Count; i++)
+            if (ModelState.IsValid)
             {
-                QuizQuestion testQuestion = passedTest.Questions.ElementAt(i);
+                Quiz passedQuiz = quizService.GetById(quiz.Id);
 
-                QuizQuestionResultViewModel questionResult = new QuizQuestionResultViewModel()
+                QuizResultViewModel result = new QuizResultViewModel()
+                { Title = passedQuiz.Title, Questions = new List<QuizQuestionResultViewModel>() };
+
+                result.Total = quiz.Answers.Count;
+
+                for (int i = 0; i < quiz.Answers.Count; i++)
                 {
-                    Text = testQuestion.Text,
-                    Answers = testQuestion.AnswerOptions.ToList(),
-                    Correct = testQuestion.CorrectAnswer,
-                    Selected = test.Answers[i]
-                };
+                    QuizQuestion testQuestion = passedQuiz.Questions.ElementAt(i);
 
-                result.Questions.Add(questionResult);
+                    QuizQuestionResultViewModel questionResult = new QuizQuestionResultViewModel()
+                    {
+                        Text = testQuestion.Text,
+                        Answers = testQuestion.AnswerOptions.ToList(),
+                        Correct = testQuestion.CorrectAnswer,
+                        Selected = quiz.Answers[i]
+                    };
+
+                    if (questionResult.Selected == testQuestion.CorrectAnswer)
+                    {
+                        result.Correct++;
+                    }
+
+                    result.Questions.Add(questionResult);
+                }
+
+                return View(result);
             }
 
-            return View(result);
+            return RedirectToAction("Index");
         }
 
         [HttpGet]
@@ -81,35 +94,30 @@ namespace PresentationLayerWebMvc.Controllers
             return View(quizView);
         }
 
-        // GET: Quizz/Details/5
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
-
-        // GET: Quizz/Create
+        [Authorize(Roles = "admin")]
         public ActionResult Create()
         {
             return View();
         }
 
-        // Categories
-        // POST: Quizz/Create
         [HttpPost]
+        [Authorize(Roles = "admin")]
         public ActionResult Create(QuizCreateViewModel quiz)
         {
             try
             {
-                IEnumerable<QuizQuestion> quizQuestions = quiz.Questions.Select(q => new QuizQuestion()
+                if (ModelState.IsValid)
                 {
-                    Text = q.Text,
-                    AnswerOptions = q.Answers.Split(';'),
-                    CorrectAnswer = q.CorrectAnswer
-                }).ToList();
+                    IEnumerable<QuizQuestion> quizQuestions = quiz.Questions.Select(q => new QuizQuestion()
+                    {
+                        Text = q.Text,
+                        AnswerOptions = q.Answers.Split(';').Where(answer => !string.IsNullOrEmpty(answer)).ToList(),
+                        CorrectAnswer = q.CorrectAnswer
+                    }).ToList();
 
-                Quiz newTest = new Quiz() { Title = quiz.Title, Questions = quizQuestions, Category = new QuizCategory() { Name = "Countries", Id = 1 } };
-                quizService.Create(newTest);
-
+                    Quiz newTest = new Quiz() { Title = quiz.Title, Questions = quizQuestions, Category = new QuizCategory() { Name = "Countries", Id = 1 } };
+                    quizService.Create(newTest);
+                }
                 return RedirectToAction("Index");
             }
             catch
@@ -118,20 +126,18 @@ namespace PresentationLayerWebMvc.Controllers
             }
         }
 
-        // GET: Quizz/Edit/5
+        [Authorize(Roles = "admin")]
         public ActionResult Edit(int id)
         {
             return View();
         }
 
-        // POST: Quizz/Edit/5
         [HttpPost]
+        [Authorize(Roles = "admin")]
         public ActionResult Edit(int id, FormCollection collection)
         {
             try
             {
-                // TODO: Add update logic here
-
                 return RedirectToAction("Index");
             }
             catch
@@ -140,7 +146,7 @@ namespace PresentationLayerWebMvc.Controllers
             }
         }
 
-        // GET: Quizz/Delete/5
+        [Authorize(Roles = "admin")]
         public ActionResult Delete(int id)
         {
             Quiz quiz = quizService.GetById(id);
@@ -155,14 +161,13 @@ namespace PresentationLayerWebMvc.Controllers
             return View(model);
         }
 
-        // POST: Quizz/Delete/5
         [HttpPost]
         [ActionName("Delete")]
+        [Authorize(Roles = "admin")]
         public ActionResult DeleteConfirm(int id)
         {
             try
             {
-                // TODO: Add delete logic here
                 Quiz quiz = quizService.GetById(id);
 
                 if (quiz == null)

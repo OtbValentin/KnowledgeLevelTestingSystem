@@ -9,6 +9,7 @@ using System.Web.Mvc;
 
 namespace PresentationLayerWebMvc.Controllers
 {
+    [Authorize(Roles = "admin")]
     public class RoleController : Controller
     {
         private readonly IRoleService roleService;
@@ -28,19 +29,12 @@ namespace PresentationLayerWebMvc.Controllers
             return View(roleViews);
         }
 
-        // GET: Rolee/Details/5
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
-
-        // GET: Rolee/Create
+        [HttpGet]
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Rolee/Create
         [HttpPost]
         public ActionResult Create(RoleCreateViewModel role)
         {
@@ -60,7 +54,6 @@ namespace PresentationLayerWebMvc.Controllers
             }
         }
 
-        // GET: Rolee/Edit/5
         public ActionResult Edit(int id)
         {
             Role role = roleService.GetById(id);
@@ -73,23 +66,24 @@ namespace PresentationLayerWebMvc.Controllers
             return View(new RoleEditViewModel() { Name = role.Name, Description = role.Description });
         }
 
-        // POST: Rolee/Edit/5
         [HttpPost]
         public ActionResult Edit(RoleEditViewModel role)
         {
             try
             {
-                Role roleToEdit = roleService.GetById(role.Id);
-
-                if (role == null)
+                if (ModelState.IsValid)
                 {
-                    return HttpNotFound();
+                    Role roleToEdit = roleService.GetById(role.Id);
+
+                    if (role == null)
+                    {
+                        return HttpNotFound();
+                    }
+
+                    roleToEdit.Name = role.Name;
+                    roleToEdit.Description = role.Description;
+                    roleService.Update(roleToEdit);
                 }
-
-                roleToEdit.Name = role.Name;
-                roleToEdit.Description = role.Description;
-                roleService.Update(roleToEdit);
-
                 return RedirectToAction("Index");
             }
             catch
