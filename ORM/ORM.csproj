@@ -50,6 +50,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AnswerOption.cs" />
+    <Compile Include="QuizStatistic.cs" />
     <Compile Include="Role.cs" />
     <Compile Include="Quiz.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

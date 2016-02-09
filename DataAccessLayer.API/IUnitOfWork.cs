@@ -11,6 +11,7 @@ namespace DataAccessLayer.API
         IUserRepository UserRepository { get; }
         IRoleRepository RoleRepository { get; }
         IQuizRepository TestRepository { get; }
+        IQuizStatisticRepository StatisticRepository { get; }
         void SaveChanges();
     }
 }

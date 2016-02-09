@@ -15,6 +15,7 @@ namespace DataAccessLayer
         private IRoleRepository roleRepository;
         private IUserRepository userRepository;
         private IQuizRepository testRepository;
+        private IQuizStatisticRepository statisticRepository;
 
         private bool disposed;
 
@@ -42,13 +43,22 @@ namespace DataAccessLayer
             }
         }
 
+        public IQuizStatisticRepository StatisticRepository
+        {
+            get
+            {
+                return statisticRepository;
+            }
+        }
+
         public UnitOfWork(DbContext context, IRoleRepository roleRepository,
-            IUserRepository userRepository, IQuizRepository testRepository)
+            IUserRepository userRepository, IQuizRepository testRepository, IQuizStatisticRepository statisticRepository)
         {
             this.context = context;
             this.userRepository = userRepository;
             this.roleRepository = roleRepository;
             this.testRepository = testRepository;
+            this.statisticRepository = statisticRepository;
         }
 
         public void Dispose()

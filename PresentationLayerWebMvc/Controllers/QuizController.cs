@@ -13,10 +13,14 @@ namespace PresentationLayerWebMvc.Controllers
     public class QuizController : Controller
     {
         private readonly IQuizService quizService;
+        private readonly IStatisticService statisticService;
+        private readonly IUserService userService;
 
-        public QuizController(IQuizService testService)
+        public QuizController(IQuizService testService, IStatisticService statisticService, IUserService userService)
         {
             this.quizService = testService;
+            this.statisticService = statisticService;
+            this.userService = userService;
         }
 
         public ActionResult Index()
@@ -62,6 +66,16 @@ namespace PresentationLayerWebMvc.Controllers
                     }
 
                     result.Questions.Add(questionResult);
+
+                }
+
+                User user = userService.GetByEmail(User.Identity.Name);
+
+                if (user != null)
+                {
+                    QuizStatistic statistic = new QuizStatistic()
+                    { DatePassed = DateTime.Now, QuizId = passedQuiz.Id, Correct = result.Correct, UserId = user.Id };
+                    statisticService.Create(statistic);
                 }
 
                 return View(result);

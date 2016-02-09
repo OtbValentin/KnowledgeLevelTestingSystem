@@ -21,5 +21,6 @@ namespace ORM
         public DbSet<AnswerOption> AnswerOptions { get; set; }
         public DbSet<Role> Roles { get; set; }
         public DbSet<User> Users { get; set; }
+        public DbSet<QuizStatistic> Statistics { get; set; }
     }
 }

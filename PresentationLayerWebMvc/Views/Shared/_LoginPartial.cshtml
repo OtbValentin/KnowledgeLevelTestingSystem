@@ -6,7 +6,7 @@
         @Html.AntiForgeryToken()
 
         <ul class="nav navbar-nav navbar-right" style="margin-right: 10px">
-            <li><a href="@Url.Action("Index", "Home")"><span class="glyphicon glyphicon-home"></span> Welcome, @HttpContext.Current.User.Identity.Name</a></li>
+            <li><a href="@Url.Action("Index", "Manage")"><span class="glyphicon glyphicon-home"></span> Welcome, @HttpContext.Current.User.Identity.Name</a></li>
             <li><a href="javascript:document.getElementById('logoutForm').submit()"><span class="glyphicon glyphicon-log-out"></span> Log off</a></li>
         </ul>
     }

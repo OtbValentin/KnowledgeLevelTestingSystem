@@ -1,0 +1,40 @@
+﻿@model IEnumerable<PresentationLayerWebMvc.Models.StatisticViewModel>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<table class="table table-striped table-bordered">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.QuizTitle)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DatePassed)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Total)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Correct)
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.QuizTitle)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DatePassed)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Total)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Correct)
+        </td>
+    </tr>
+}
+
+</table>

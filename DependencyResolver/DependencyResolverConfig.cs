@@ -43,10 +43,12 @@ namespace DependenciesConfig
             kernel.Bind<IQuizService>().To<QuizService>();
             kernel.Bind<IRoleService>().To<RoleService>();
             kernel.Bind<IUserService>().To<UserService>();
+            kernel.Bind<IStatisticService>().To<StatisticService>();
 
             kernel.Bind<IQuizRepository>().To<QuizRepository>();
             kernel.Bind<IUserRepository>().To<UserRepository>();
             kernel.Bind<IRoleRepository>().To<RoleRepository>();
+            kernel.Bind<IQuizStatisticRepository>().To<QuizStatisticRepository>();
         }
     }
 
@@ -57,10 +59,12 @@ namespace DependenciesConfig
             Bind<IQuizService>().To<QuizService>();
             Bind<IRoleService>().To<RoleService>();
             Bind<IUserService>().To<UserService>();
+            Bind<IStatisticService>().To<StatisticService>();
 
             Bind<IQuizRepository>().To<QuizRepository>();
             Bind<IUserRepository>().To<UserRepository>();
             Bind<IRoleRepository>().To<RoleRepository>();
+            Bind<IQuizStatisticRepository>().To<QuizStatisticRepository>();
 
             Bind<IUnitOfWork>().To<UnitOfWork>().InRequestScope();
 
