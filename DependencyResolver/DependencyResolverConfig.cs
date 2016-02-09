@@ -56,19 +56,19 @@ namespace DependenciesConfig
     {
         public override void Load()
         {
-            Bind<IQuizService>().To<QuizService>();
-            Bind<IRoleService>().To<RoleService>();
-            Bind<IUserService>().To<UserService>();
-            Bind<IStatisticService>().To<StatisticService>();
+            //Bind<IQuizService>().To<QuizService>();
+            //Bind<IRoleService>().To<RoleService>();
+            //Bind<IUserService>().To<UserService>();
+            //Bind<IStatisticService>().To<StatisticService>();
 
-            Bind<IQuizRepository>().To<QuizRepository>();
-            Bind<IUserRepository>().To<UserRepository>();
-            Bind<IRoleRepository>().To<RoleRepository>();
-            Bind<IQuizStatisticRepository>().To<QuizStatisticRepository>();
+            //Bind<IQuizRepository>().To<QuizRepository>();
+            //Bind<IUserRepository>().To<UserRepository>();
+            //Bind<IRoleRepository>().To<RoleRepository>();
+            //Bind<IQuizStatisticRepository>().To<QuizStatisticRepository>();
 
-            Bind<IUnitOfWork>().To<UnitOfWork>().InRequestScope();
+            //Bind<IUnitOfWork>().To<UnitOfWork>().InRequestScope();
 
-            Bind<DbContext>().To<QuizFrameworkContext>().InRequestScope();
+            //Bind<DbContext>().To<QuizFrameworkContext>().InRequestScope();
         }
     }
 }

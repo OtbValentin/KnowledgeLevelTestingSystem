@@ -124,14 +124,15 @@ namespace PresentationLayerWebMvc.CommonMembership
                     Roles = new List<Role>() { new Role() { Name = "user" } }
                 };
 
-                IKernel kernel = new StandardKernel(new BindingModule());
-                IUserService userService = kernel.Get<IUserService>();
+                //IKernel kernel = new StandardKernel(new BindingModule());
+                //IUserService userService = kernel.Get<IUserService>();
+
+                IUserService userService = DependencyResolver.Current.GetService<IUserService>();
 
                 userService.Create(newUser);
 
                 status = MembershipCreateStatus.Success;
 
-                //Fix 1
                 return new MembershipUser("CommonMembershipProvider", newUser.Email, newUser.Id, newUser.Email,
                 null, null, true, false, newUser.CreationDate, DateTime.MinValue,
                 DateTime.MinValue, DateTime.MinValue, DateTime.MinValue);
@@ -151,8 +152,10 @@ namespace PresentationLayerWebMvc.CommonMembership
 
         public override MembershipUser GetUser(string username, bool userIsOnline)
         {
-            IKernel kernel = new StandardKernel(new BindingModule());
-            IUserService userService = kernel.Get<IUserService>();
+            //IKernel kernel = new StandardKernel(new BindingModule());
+            //IUserService userService = kernel.Get<IUserService>();
+
+            IUserService userService = DependencyResolver.Current.GetService<IUserService>();
 
             User user = userService.GetByEmail(username);
 
@@ -174,8 +177,10 @@ namespace PresentationLayerWebMvc.CommonMembership
                 return false;
             }
 
-            IKernel kernel = new StandardKernel(new BindingModule());
-            IUserService userService = kernel.Get<IUserService>();
+            //IKernel kernel = new StandardKernel(new BindingModule());
+            //IUserService userService = kernel.Get<IUserService>();
+
+            IUserService userService = DependencyResolver.Current.GetService<IUserService>();
 
             User user = userService.GetByEmail(username);
 
@@ -189,8 +194,10 @@ namespace PresentationLayerWebMvc.CommonMembership
 
         public MembershipUserCollection GetAllUsers()
         {
-            IKernel kernel = new StandardKernel(new BindingModule());
-            IUserService userService = kernel.Get<IUserService>();
+            //IKernel kernel = new StandardKernel(new BindingModule());
+            //IUserService userService = kernel.Get<IUserService>();
+
+            IUserService userService = DependencyResolver.Current.GetService<IUserService>();
 
             MembershipUserCollection users = new MembershipUserCollection();
 

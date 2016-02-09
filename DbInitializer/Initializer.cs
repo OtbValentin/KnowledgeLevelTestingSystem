@@ -12,18 +12,18 @@ namespace DbInitializer
     {
         protected override void Seed(QuizFrameworkContext context)
         {
-            Role admin = new Role() { Name = "admin", Description = "Administrator of a site" };
+            Role admin = new Role() { Name = "admin", Description = "Site administrator" };
             Role user = new Role() { Name = "user", Description = "Common user" };
             context.Roles.Add(admin);
             context.Roles.Add(user);
-            IEnumerable<QuizQuestion> test1Questions = new QuizQuestion[] { new QuizQuestion() { Text = "The Capital of Great Britain is ...",
+            IEnumerable<QuizQuestion> test1Questions = new QuizQuestion[] { new QuizQuestion() { Text = "The Capital of Great Britain is",
                 AnswerOptions = new AnswerOption[] { new AnswerOption() { Text = "London", IsCorrect = true }, new AnswerOption() { Text = "Paris", IsCorrect = false }, new AnswerOption() { Text = "Minsk", IsCorrect = false } } },
-            new QuizQuestion() { Text = "The largest country in the world ...",
+            new QuizQuestion() { Text = "The largest country in the world is",
                 AnswerOptions = new AnswerOption[] { new AnswerOption() { Text = "Germany", IsCorrect = false }, new AnswerOption() { Text = "China", IsCorrect = false }, new AnswerOption() { Text = "Russia", IsCorrect = true } } },
-            new QuizQuestion() { Text = "Prague is the capital of ...",
+            new QuizQuestion() { Text = "Prague is the capital of",
                 AnswerOptions = new AnswerOption[] { new AnswerOption() { Text = "Czech Republic", IsCorrect = true }, new AnswerOption() { Text = "France", IsCorrect = false }, new AnswerOption() { Text = "Serbia", IsCorrect = false } } }};
 
-            Quiz test1 = new Quiz() { Category = new QuizCategory() { Name = "Countries" }, Title = "The capitals of countries", Questions = new List<QuizQuestion>(test1Questions) };
+            Quiz test1 = new Quiz() { Category = new QuizCategory() { Name = "Countries" }, Title = "Countries", Questions = new List<QuizQuestion>(test1Questions) };
 
             context.Tests.Add(test1);
 

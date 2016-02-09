@@ -35,8 +35,10 @@ namespace PresentationLayerWebMvc.CommonMembership
             {
                 Role role = new Role() { Name = roleName, Description = roleName };
 
-                IKernel kernel = new StandardKernel(new BindingModule());
-                IRoleService roleService = kernel.Get<IRoleService>();
+                //IKernel kernel = new StandardKernel(new BindingModule());
+                //IRoleService roleService = kernel.Get<IRoleService>();
+
+                IRoleService roleService = DependencyResolver.Current.GetService<IRoleService>();
 
                 roleService.Create(role);
             }
@@ -44,8 +46,10 @@ namespace PresentationLayerWebMvc.CommonMembership
 
         public override bool RoleExists(string roleName)
         {
-            IKernel kernel = new StandardKernel(new BindingModule());
-            IRoleService roleService = kernel.Get<IRoleService>();
+            //IKernel kernel = new StandardKernel(new BindingModule());
+            //IRoleService roleService = kernel.Get<IRoleService>();
+
+            IRoleService roleService = DependencyResolver.Current.GetService<IRoleService>();
 
             Role role = roleService.GetRoleByName(roleName);
 
@@ -59,16 +63,20 @@ namespace PresentationLayerWebMvc.CommonMembership
 
         public override string[] GetAllRoles()
         {
-            IKernel kernel = new StandardKernel(new BindingModule());
-            IRoleService roleService = kernel.Get<IRoleService>();
+            //IKernel kernel = new StandardKernel(new BindingModule());
+            //IRoleService roleService = kernel.Get<IRoleService>();
+
+            IRoleService roleService = DependencyResolver.Current.GetService<IRoleService>();
 
             return roleService.GetAll().Select(role => role.Name).ToArray();
         }
 
         public override string[] GetRolesForUser(string username)
         {
-            IKernel kernel = new StandardKernel(new BindingModule());
-            IUserService userService = kernel.Get<IUserService>();
+            //IKernel kernel = new StandardKernel(new BindingModule());
+            //IUserService userService = kernel.Get<IUserService>();
+
+            IUserService userService = DependencyResolver.Current.GetService<IUserService>();
 
             User user = userService.GetByEmail(username);
 

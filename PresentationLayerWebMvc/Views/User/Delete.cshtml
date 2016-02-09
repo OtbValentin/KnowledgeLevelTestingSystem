@@ -1,27 +1,20 @@
-﻿@model PresentationLayerWebMvc.Models.RoleDisplayViewModel
+﻿@model PresentationLayerWebMvc.Models.UserDeleteViewModel
 
 @{
-    ViewBag.Title = "Delete role";
+    ViewBag.Title = "Delete user";
 }
 
 <h3>Are you sure you want to delete this?</h3>
 <div>
+    <h4>UserDeleteViewModel</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.Name)
+            @Html.DisplayNameFor(model => model.Email)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Name)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Description)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Description)
+            @Html.DisplayFor(model => model.Email)
         </dd>
 
     </dl>
